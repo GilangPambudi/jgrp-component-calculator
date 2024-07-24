@@ -22,9 +22,15 @@ function calculateValues(selection, maxHealth, componentDivider) {
   } else {
     var komponen = dl / componentDivider;
     var persen = Math.round((health / maxHealthValue) * 100);
-    var hasil = Math.round(komponen);
-    var modal = (Math.round(komponen) * 0.55).toFixed(2);
+    var hasil = Math.trunc(komponen);
+    var modal = (hasil * 0.55).toFixed(2);
     var untung = `${(komponen * 0.55 + 10).toFixed(2)} - $${(komponen * 0.55 + 20).toFixed(2)}`;
+
+    console.log(komponen);
+    console.log(persen);
+    console.log(hasil);
+    console.log(modal);
+    console.log(untung);
 
     document.getElementById("persen").innerHTML = persen + "%";
     document.getElementById("hasil").innerHTML = hasil + " Component";
@@ -45,6 +51,9 @@ function update() {
       break;
     case "Health 3.000 (Ambulance)":
       calculateValues(selection, 3000, 6);
+      break;
+    case "Health 1.000 (Kendaraan tanpa upgrade mesin)":
+      calculateValues(selection, 1000, 2);
       break;
     default:
       Swal.fire({
