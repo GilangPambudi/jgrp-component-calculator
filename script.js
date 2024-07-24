@@ -8,6 +8,13 @@ function clearInput() {
   document.getElementById("selection").selectedIndex = 0;
 }
 
+document.addEventListener("keydown", function(event) {
+  if (event.keyCode === 27) { 
+    event.preventDefault();
+    clearInput(); 
+  }
+});
+
 function calculateValues(selection, maxHealth, componentDivider) {
   var health = parseFloat(document.getElementById("input").value);
   var maxHealthValue = maxHealth;
@@ -24,7 +31,7 @@ function calculateValues(selection, maxHealth, componentDivider) {
     var persen = Math.round((health / maxHealthValue) * 100);
     var hasil = Math.trunc(komponen);
     var modal = (hasil * 0.55).toFixed(2);
-    var untung = `${(komponen * 0.55 + 10).toFixed(2)} - $${(komponen * 0.55 + 20).toFixed(2)}`;
+    var untung = `${(hasil * 0.55 + 10).toFixed(2)} - $${(hasil * 0.55 + 20).toFixed(2)}`;
 
     console.log(komponen);
     console.log(persen);
@@ -38,6 +45,13 @@ function calculateValues(selection, maxHealth, componentDivider) {
     document.getElementById("untung").innerHTML = "Rekomendasi: $" + untung;
   }
 }
+
+document.getElementById("input").addEventListener("keypress", function(event) {
+  if (event.keyCode === 13) { 
+    event.preventDefault(); 
+    update(); 
+  }
+});
 
 function update() {
   var selection = document.getElementById("selection").value;
