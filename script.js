@@ -1,11 +1,10 @@
-// main.js
 function clearInput() {
   document.getElementById("input").value = null;
   document.getElementById("hasil").innerHTML = "";
   document.getElementById("modal").innerHTML = "";
-  document.getElementById("untung").innerHTML = "";
   document.getElementById("persen").innerHTML = "";
   document.getElementById("selection").selectedIndex = 0;
+  document.getElementById("alert").classList.add("d-none");
 }
 
 document.addEventListener("keydown", function(event) {
@@ -31,18 +30,16 @@ function calculateValues(selection, maxHealth, componentDivider) {
     var persen = Math.round((health / maxHealthValue) * 100);
     var hasil = Math.trunc(komponen);
     var modal = (hasil * 0.55).toFixed(2);
-    var untung = `${(hasil * 0.55 + 10).toFixed(2)} - $${(hasil * 0.55 + 20).toFixed(2)}`;
 
     console.log(komponen);
     console.log(persen);
     console.log(hasil);
     console.log(modal);
-    console.log(untung);
 
-    document.getElementById("persen").innerHTML = persen + "%";
-    document.getElementById("hasil").innerHTML = hasil + " Component";
-    document.getElementById("modal").innerHTML = "Modal: $" + modal;
-    document.getElementById("untung").innerHTML = "Rekomendasi: $" + untung;
+    document.getElementById("persen").innerHTML = "Persentase: " + persen + "%";
+    document.getElementById("hasil").innerHTML =  "Komponen: " + hasil;
+    document.getElementById("modal").innerHTML = "Harga komponen: $" + modal;
+    document.getElementById("alert").classList.remove("d-none");
   }
 }
 
